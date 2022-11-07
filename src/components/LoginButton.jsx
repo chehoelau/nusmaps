@@ -32,7 +32,7 @@ const LoginButton = () => {
     const provider = new GoogleAuthProvider();
     const userRef = collection(db, "users");
 
-    await signInWithPopup(auth, provider).then(async (cred) => {
+    await signInWithRedirect(auth, provider).then(async (cred) => {
       const q = query(userRef, where("uid", "==", cred.user.uid));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
